@@ -4,7 +4,7 @@ node {
     env.IMAGE = 'srini78/devops-amazon-app1'
 
     stage('Clone repository') {
-             git branch: 'main', url: 'git@github.com:srini-lynx/argocd-amazon-manifest.git'  
+             git branch: 'main', url: 'https://github.com/srini-lynx/argocd-amazon-manifest.git'  
     }
 
     stage('Update GIT') {
