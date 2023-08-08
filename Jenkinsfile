@@ -1,20 +1,20 @@
 node {
     def app
     
-    env.IMAGE = 'srini78/devops-amazon-app1'
+    env.IMAGE = 'gfakx/gf-amazon-app'
 
     stage('Clone repository') {
-             git branch: 'main', url: 'https://github.com/srini-lynx/argocd-amazon-manifest.git'  
+             git branch: 'main', url: 'https://github.com/gfakx/argocd-amazon-manifest.git'  
     }
 
     stage('Update GIT') {
             script {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                    withCredentials([usernamePassword(credentialsId: 'github-cred-srini', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
+                    withCredentials([usernamePassword(credentialsId: 'gf-github-jenkins-usrpwd', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
                         //script {def encodedPassword = URLEncoder.encode("$GIT_PASSWORD",'UTF-8')}
                         //script  {def IMAGE='ooghenekaro/amazon'}
-                        sh "git config user.email sri.mcloud@outlook.com"
-                        sh "git config user.name srini-lynx"
+                        sh "git config user.email gfakx@outlook.com"
+                        sh "git config user.name gfakx"
                         //sh "git switch master"
                         sh "cat deployment.yml"
                         sh "sed -i 's+${IMAGE}.*+${IMAGE}:${DOCKERTAG}+g' deployment.yml"
